@@ -23,19 +23,17 @@ def img_pred(video_path, model, batch_size=5):
             break
         frame_count += 1
 
-        # Convert the frame to RGB (ensuring it's 3 channels)
+        # Convert the frame to RGB
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, (150, 150))
 
-        # Ensure the frame has 3 color channels
         if img.shape[-1] != 3:
             print(f"Warning: Frame does not have 3 channels, but has {img.shape[-1]} channels.")
-            img = np.stack([img] * 3, axis=-1)  # Convert grayscale to RGB
+            img = np.stack([img] * 3, axis=-1)
 
         img = img.reshape(1, 150, 150, 3)
         frames.append(img)
 
-        # If batch size is reached, predict on the batch
         if len(frames) >= batch_size:
             batch = np.vstack(frames)
             predictions = model.predict(batch)
@@ -45,7 +43,6 @@ def img_pred(video_path, model, batch_size=5):
                     fake_count += 1
             frames = []
 
-    # Final remaining frames
     if frames:
         batch = np.vstack(frames)
         predictions = model.predict(batch)
@@ -63,20 +60,16 @@ def photo_pred(image, model):
     img = Image.open(image).resize((150, 150))
     img = np.array(img)
 
-    # Debugging: Check the number of channels in the image
     print(f"Image shape: {img.shape}")
 
-    # Handle RGBA images (4 channels)
-    if img.ndim == 3 and img.shape[-1] == 4:  # If the image has 4 channels (RGBA)
+    if img.ndim == 3 and img.shape[-1] == 4:
         print("Image has 4 channels (RGBA), converting to RGB.")
-        img = img[:, :, :3]  # Remove the alpha channel
+        img = img[:, :, :3]
 
-    # Handle grayscale images (2D arrays)
-    elif img.ndim == 2:  # If the image is grayscale (2D array)
+    elif img.ndim == 2:
         print("Image is grayscale, converting to RGB.")
-        img = np.stack([img] * 3, axis=-1)  # Convert grayscale to RGB
+        img = np.stack([img] * 3, axis=-1)
 
-    # Ensure the image has 3 color channels (RGB)
     if img.shape[-1] != 3:
         raise ValueError(f"The image should have 3 color channels (RGB), but has {img.shape[-1]} channels.")
 
@@ -93,7 +86,6 @@ def main():
 
     choice = st.radio("Select file type to upload", ["Video", "Image"], horizontal=True)
 
-    # Reset container for uploaded video path
     if 'uploaded_video_path' not in st.session_state:
         st.session_state.uploaded_video_path = None
 
@@ -104,7 +96,6 @@ def main():
         if video_file:
             uploaded_video_path = "uploaded_video.mp4"
 
-            # Remove previous video
             if os.path.exists(uploaded_video_path):
                 os.remove(uploaded_video_path)
 
@@ -113,7 +104,6 @@ def main():
 
             st.session_state.uploaded_video_path = uploaded_video_path
 
-            # Center and resize using native Streamlit layout
             col1, col2, col3 = st.columns([1, 2, 1])
             with col2:
                 st.video(video_file, start_time=0)
@@ -143,7 +133,12 @@ def main():
         image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
         if image_file:
             img = Image.open(image_file)
-            st.image(img, caption='Uploaded Image', use_column_width=True)
+
+            # Show image in center using 1:2:1 layout
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.image(img, caption='Uploaded Image', use_column_width=True)
+
             st.markdown(f"**File:** {image_file.name}")
 
             with st.spinner("Analyzing image..."):
