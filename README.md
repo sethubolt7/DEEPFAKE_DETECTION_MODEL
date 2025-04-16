@@ -21,7 +21,7 @@ The goal is to showcase applied machine learning, model deployment, and frontend
 
 `├── train/                     # Model architecture, training scripts` <br>
 `├── test data/                 # Sample test videos and images` <br>
-`├── streamlit/app.py           # Streamlit frontend code for` inference <br>
+`├── streamlit/app.py           # Streamlit frontend code for inference` <br>
 `├── streamlit/my_model.keras   # Saved trained model` <br>
 
 ---
