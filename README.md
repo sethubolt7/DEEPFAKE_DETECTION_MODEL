@@ -29,8 +29,11 @@ The goal is to showcase applied machine learning, model deployment, and frontend
 ### 📸 Output Section
 
 <p align="center">
-  <img src="demo/demo.png" width="100%"/>
+  <img src="demo/demo.png" width="30%"/>
+  <img src="demo/screen.png" width="30%"/>
+  <img src="demo/demo2.png" width="30%"/>
 </p>
+
 
 
 ---
