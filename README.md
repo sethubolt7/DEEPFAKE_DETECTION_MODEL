@@ -19,10 +19,10 @@ The goal is to showcase applied machine learning, model deployment, and frontend
 
 ## 🗂 Repository Structure
 
-├── train/ # Model architecture, training scripts <br>
-├── test data/ # Sample test videos and images <br>
-├── streamlit/app.py # Streamlit frontend code for inference <br>
-├── streamlit/my_model.keras # Saved trained model <br>
+├── train/                     # Model architecture, training scripts <br>
+├── test data/                 # Sample test videos and images <br>
+├── streamlit/app.py           # Streamlit frontend code for inference <br>
+├── streamlit/my_model.keras   # Saved trained model <br>
 
 ---
 
