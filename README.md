@@ -26,17 +26,12 @@ The goal is to showcase applied machine learning, model deployment, and frontend
 
 ---
 
-## 📚 Topics Covered
+### 📸 Output Section
 
-- ✅ Deepfake Image & Video Detection
-- 🧠 Transfer Learning with EfficientNetB0
-- 🖼️ Image Preprocessing & Channel Normalization
-- 🎞️ OpenCV Video Frame Extraction
-- 🔄 Batch Prediction on Video Frames
-- 📈 Classification: Real vs. Fake
-- 🧪 Streamlit App for Real-time Inference
-- 🧼 Robust Handling of Image Formats (RGB, RGBA, Grayscale)
-- 💾 Model Exporting and Deployment (`.keras`)
+<p align="center">
+  <img src="demo/demo.png" width="100%"/>
+</p>
+
 
 ---
 
